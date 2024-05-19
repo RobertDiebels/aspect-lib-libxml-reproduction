@@ -1,0 +1,16 @@
+services:
+  reproduction:
+    image: gcr.io/bazel-public/bazel:7.1@sha256:f4b30e3c7c2eb28fbabbf60a080b550007db3a8d3e2b4f46edd4ed13c27d2da9
+    volumes:
+      - source: ./
+        target: /src/workspace
+        type: bind
+      - source: ./
+        target: /tmp/build_output
+        type: bind
+    working_dir: /src/workspace
+    network_mode: host
+    command:
+      - build
+      - //app:app
+
